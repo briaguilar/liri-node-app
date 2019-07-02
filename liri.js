@@ -11,6 +11,7 @@ require("dotenv").config();
 var axios = require("axios");
 var movieName = process.argv[3];
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+
     /////////////// Testing for debug ////////////
 //console.log(queryUrl); // Works!
 
@@ -25,21 +26,15 @@ axios.get(queryUrl).then(
         console.log("Movie Plot: " + response.data.Plot);
         console.log("Actors: " + response.data.Actors);
     })
-    .catch(function(error) {
-        if (error.response) {
-            console.log("---------------Data---------------");
-            console.log(error.response.data);
-            console.log("---------------Status---------------");
-            console.log(error.response.status);
-            console.log("---------------Status---------------");
-            console.log(error.response.headers);
-        } else if (error.request) {
-            console.log(error.request)
-        } else {
-            console.log("Error", error.message);
-        }
+    .catch(function(mrNobody) {
+        var mrNobody = "http://www.imdb.com/title/tt0485947/"
+        if (movieName === "") {
+            console.log(mrNobody.data.Title);
+        } 
         console.log(error.config);
     });
 
-///////////////////// OMDb Works! ////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
+////////////// OMDb Works except for the Mr. Nobody  //////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+
