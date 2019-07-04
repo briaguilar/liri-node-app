@@ -106,7 +106,23 @@ if (process.argv[2] === "do-what-it-says") {
         process.argv[2] = content[0];
         userSong = content[1];
 
-        console.log(process.argv[2]);
+        if (process.argv[2] === "spotify-this-song") {
+            spotify
+                .search({ type: 'track', query: userSong })
+                .then(function (response) {
+                    var info = response.tracks.items[0];
+                    var songInfo = [
+                        "Artist Name: " + info.artists[0].name,
+                        "Song Title: " + info.name,
+                        "Album Title: " + info.album.name
+                    ].join("\n")
+
+                    console.log(songInfo);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
     });
 
 }
