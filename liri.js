@@ -47,7 +47,6 @@ var spotify = new Spotify({
 });
 var userSong = process.argv[3];
 
-
 if (process.argv[2] === "spotify-this-song") {
     spotify
         .search({ type: 'track', query: userSong })
@@ -64,7 +63,6 @@ if (process.argv[2] === "spotify-this-song") {
         .catch(function (err) {
             console.log(err);
         });
-
 }
 
 
